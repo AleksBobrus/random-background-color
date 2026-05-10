@@ -1,21 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="vieewport" content="width=device-width, initial-scale=1.0">
-    <title>Random background color</title>
-    <link rel="stylesheet" href="styles.css">
-  </head>
-  <body>
-    <h1>Random Background Color changer</h1>
-    
-    <main>
-      <div class="information-container">
-        <p>Hex Code: <span id="hex-code">#110815</span></p>
-      </div>
-      <button id="button">Change Background Color</button>
-    </main>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Background Color</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: background-color 0.4s ease;
+      background-color: #ffffff;
+    }
+    .color-display {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #333;
+      background: rgba(255,255,255,0.85);
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      user-select: all;
+    }
+    button {
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #333;
+      background: white;
+      border: 2px solid #333;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    button:hover {
+      background: #333;
+      color: white;
+      transform: translateY(-2px);
+    }
+    button:active { transform: translateY(0); }
+  </style>
+</head>
+<body>
+  <div class="color-display" id="colorDisplay">#ffffff</div>
+  <button id="changeColorBtn">Change Color</button>
 
-    <script src="script.js"></script>
-  </body>
+  <script>
+    const colorDisplay = document.getElementById('colorDisplay');
+    const changeColorBtn = document.getElementById('changeColorBtn');
+
+    function getRandomHexColor() {
+      const letters = '0123456789ABCDEF';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+
+    changeColorBtn.addEventListener('click', () => {
+      const hexCode = getRandomHexColor();
+      document.body.style.backgroundColor = hexCode;
+      colorDisplay.textContent = hexCode;
+    });
+  </script>
+</body>
 </html>
