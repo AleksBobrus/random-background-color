@@ -1,7 +1,3 @@
-const body = document.querySelector('body');
-const bgHexCodeSpanElement = document.querySelector('#hex-code');
-const button = document.querySelector('#button');
-
 const darkColorsArr = [
   "#2C3E50",
   "#34495E",
@@ -20,6 +16,8 @@ function getRandomIndex() {
     console.log(randomIndex);
     return randomIndex;
 }
+const body = document.querySelector('body');
+const bgHexCodeSpanElement = document.querySelector('#hex-code');
 
 function changeBackgroundColor() {
     const color = darkColorsArr[getRandomIndex()];
@@ -27,5 +25,5 @@ function changeBackgroundColor() {
     hexCode.innerText = color;
     body.style.backgroundColor = color;
 }
-
+const button = document.querySelector('#button');
 button.onclick = changeBackgroundColor;
