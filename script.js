@@ -1,29 +1,17 @@
-const darkColorsArr = [
-  "#2C3E50",
-  "#34495E",
-  "#2C2C2C",
-  "#616A6B",
-  "#4A235A",
-  "#2F4F4F",
-  "#0E4B5A",
-  "#36454F",
-  "#2C3E50",
-  "#800020",
-];
+const colorDisplay = document.getElementById('colorDisplay');
+const changeColorBtn = document.getElementById('changeColorBtn');
 
-function getRandomIndex() {
-    const randomIndex = Math.floor(darkColorsArr.length * Math.random());
-    console.log(randomIndex);
-    return randomIndex;
+function getRandomHexColor() {
+  const letters = '0123456789ABCDEF';
+  let color = '#';
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
 }
-const body = document.querySelector('body');
-const hexCode = document.querySelector('#hex-code');
 
-function changeBackgroundColor() {
-    const color = darkColorsArr[getRandomIndex()];
-    console.log(color);
-    hexCode.innerText = color;
-    body.style.backgroundColor = color;
-}
-const button = document.querySelector('#button');
-button.onclick = changeBackgroundColor;
+changeColorBtn.addEventListener('click', () => {
+  const hexCode = getRandomHexColor();
+  document.body.style.backgroundColor = hexCode;
+  colorDisplay.textContent = hexCode;
+});
